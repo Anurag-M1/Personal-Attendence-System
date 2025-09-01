@@ -17,25 +17,30 @@
   <!-- Background -->
   <div class="bg"></div>
 
-  <!-- Header -->
-  <header class="nav glass">
-    <div class="brand">📒 Attendance <span>CSE 7B 2025-26</span></div>
-  </header>
+  <!-- Page wrapper for spacing -->
+  <div class="page-wrap">
 
-  <!-- Main Content -->
-  <main class="container">
-    <div class="card glass">
-      {% block content %}{% endblock %}
-    </div>
-  </main>
+    <!-- Header -->
+    <header class="nav glass">
+      <div class="brand">📒 Attendance <span>CSE 7B 2025-26</span></div>
+    </header>
 
-  <!-- Footer -->
-  <footer class="footer glass">
-    <small>
-      Made with ❤️ by <strong>Anurag</strong> • Personal Attendance Management System • 
-      © {{ now.year }}
-    </small>
-  </footer>
+    <!-- Main Content -->
+    <main class="container">
+      <div class="card glass">
+        {% block content %}{% endblock %}
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer glass">
+      <small>
+        Made with ❤️ by <strong>Anurag</strong> • Personal Attendance Management System • 
+        © {{ now().year }}
+      </small>
+    </footer>
+
+  </div>
 
   <!-- Optional Script (future mobile nav) -->
   <script>
