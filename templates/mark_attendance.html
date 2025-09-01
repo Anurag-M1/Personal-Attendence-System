@@ -1,8 +1,10 @@
-
 {% extends "base.html" %}
+
 {% block content %}
   <h2 class="title">Mark Attendance</h2>
-  <form method="post" class="form">
+
+  <form method="post" class="form glass">
+    <!-- Subject & Date Row -->
     <div class="row">
       <div class="col">
         <label class="label">Subject</label>
@@ -17,6 +19,8 @@
         <input class="input" type="date" name="date" value="{{ today }}">
       </div>
     </div>
+
+    <!-- Student List -->
     <div class="list">
       {% for student in students %}
         <div class="list-item glass">
@@ -30,6 +34,8 @@
         </div>
       {% endfor %}
     </div>
-    <button class="btn" type="submit">Save Attendance</button>
+
+    <!-- Submit Button -->
+    <button class="btn" type="submit">💾 Save Attendance</button>
   </form>
 {% endblock %}
