@@ -1,10 +1,20 @@
-
 {% extends "base.html" %}
+
 {% block content %}
   <h2 class="title">Add Subject</h2>
-  <form method="post" class="form">
-    <label class="label">Subject Name</label>
-    <input class="input" type="text" name="name" placeholder="e.g., Machine Learning" required>
-    <button class="btn" type="submit">Add Subject</button>
+
+  <form method="post" class="form glass">
+    <div class="row">
+      <div class="col">
+        <label class="label">Subject Name</label>
+        <input 
+          class="input" 
+          type="text" 
+          name="name" 
+          placeholder="e.g., Machine Learning" 
+          required>
+      </div>
+    </div>
+    <button class="btn" type="submit">➕ Add Subject</button>
   </form>
 {% endblock %}
