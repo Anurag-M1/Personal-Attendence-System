@@ -1,0 +1,12 @@
+
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="title">Welcome 👋</h1>
+  <p class="muted">Personal Attendance Management System .</p>
+  <div class="grid">
+    <a class="action" href="{{ url_for('add_student') }}">➕ Add Student</a>
+    <a class="action" href="{{ url_for('add_subject') }}">📚 Add Subject</a>
+    <a class="action" href="{{ url_for('mark_attendance') }}">🗓️ Mark Attendance</a>
+    <a class="action" href="{{ url_for('report') }}">📈 View Report</a>
+  </div>
+{% endblock %}

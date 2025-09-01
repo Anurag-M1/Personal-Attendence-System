@@ -1,0 +1,36 @@
+<hr>
+<h3>Overall Attendance Percentage</h3>
+<table class="table glass">
+  <thead>
+    <tr>
+      <th>Student</th>
+      <th>Total Classes</th>
+      <th>Present</th>
+      <th>Percentage</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in percentages %}
+    <tr>
+      <td>{{ s[0] }}</td>
+      <td>{{ s[1] }}</td>
+      <td>{{ s[2] }}</td>
+      <td>{{ s[3] }}%</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<hr>
+<h3>Export Attendance</h3>
+<form method="get" action="/export/excel">
+  <label>From: <input type="date" name="start"></label>
+  <label>To: <input type="date" name="end"></label>
+  <button type="submit" class="btn">Export to Excel</button>
+</form>
+
+<form method="get" action="/export/pdf">
+  <label>From: <input type="date" name="start"></label>
+  <label>To: <input type="date" name="end"></label>
+  <button type="submit" class="btn">Export to PDF</button>
+</form>

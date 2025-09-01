@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance Manager</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <!-- Background -->
+  <div class="bg"></div>
+
+  <!-- Header / Nav -->
+  <header class="nav glass">
+    <div class="brand">📒 Attendance <span>CSE 7B 2025-26</span></div>
+    <nav class="links">
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('add_student') }}">Add Student</a>
+      <a href="{{ url_for('add_subject') }}">Add Subject</a>
+      <a href="{{ url_for('mark_attendance') }}">Mark Attendance</a>
+      <a href="{{ url_for('report') }}">View Report</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <div class="card glass">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer glass">
+    <small>
+      Made With 💖 by Anurag • Attendance Management System • © {{ now().year }}
+    </small>
+  </footer>
+</body>
+</html>

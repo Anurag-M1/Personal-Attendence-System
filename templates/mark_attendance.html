@@ -1,0 +1,35 @@
+
+{% extends "base.html" %}
+{% block content %}
+  <h2 class="title">Mark Attendance</h2>
+  <form method="post" class="form">
+    <div class="row">
+      <div class="col">
+        <label class="label">Subject</label>
+        <select class="input" name="subject" required>
+          {% for sub in subjects %}
+            <option value="{{ sub[0] }}">{{ sub[1] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col">
+        <label class="label">Date</label>
+        <input class="input" type="date" name="date" value="{{ today }}">
+      </div>
+    </div>
+    <div class="list">
+      {% for student in students %}
+        <div class="list-item glass">
+          <div class="list-name">{{ student[1] }}</div>
+          <div class="list-actions">
+            <select class="input slim" name="student_{{ student[0] }}">
+              <option value="Present">Present</option>
+              <option value="Absent">Absent</option>
+            </select>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <button class="btn" type="submit">Save Attendance</button>
+  </form>
+{% endblock %}
