@@ -18,13 +18,7 @@
       <tbody>
         {% for s in percentages %}
         <tr>
-          <td data-label="Student">
-            {{ s[0] }}
-            <div class="attendance-checkbox">
-              <label><input type="checkbox" name="present_{{ loop.index }}"> P</label>
-              <label><input type="checkbox" name="absent_{{ loop.index }}"> A</label>
-            </div>
-          </td>
+          <td data-label="Student">{{ s[0] }}</td>
           <td data-label="Total Classes">{{ s[1] }}</td>
           <td data-label="Present">{{ s[2] }}</td>
           <td data-label="Percentage">
