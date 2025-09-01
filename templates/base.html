@@ -17,10 +17,10 @@
   <!-- Background -->
   <div class="bg"></div>
 
-  <!-- Header / Nav -->
+  <!-- Header -->
   <header class="nav glass">
-  <div class="brand">📒 Attendance <span>CSE 7B 2025-26</span></div>
-</header>
+    <div class="brand">📒 Attendance <span>CSE 7B 2025-26</span></div>
+  </header>
 
   <!-- Main Content -->
   <main class="container">
@@ -32,16 +32,16 @@
   <!-- Footer -->
   <footer class="footer glass">
     <small>
-      Made With 💖 by Anurag • Attendance Management System • © {{ now().year }}
+      Made with 💖 by <strong>Anurag</strong> • Attendance Management System • © {{ now().year }}
     </small>
   </footer>
 
+  <!-- Optional Script (for future mobile nav if added) -->
   <script>
-    // Close menu on outside click (for mobile)
     document.addEventListener("click", (e) => {
       const nav = document.getElementById("navbar");
       const toggle = document.querySelector(".menu-toggle");
-      if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+      if (nav && toggle && !nav.contains(e.target) && !toggle.contains(e.target)) {
         nav.classList.remove("open");
       }
     });
