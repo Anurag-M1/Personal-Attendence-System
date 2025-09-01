@@ -1,9 +1,9 @@
 :root {
-  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-bg: rgba(255, 255, 255, 0.18);
   --glass-brd: rgba(255, 255, 255, 0.35);
   --txt: #0f172a;
   --muted: #334155;
-  --radius: 16px;
+  --radius: 18px;
 }
 
 * {
@@ -17,18 +17,19 @@ body {
   height: 100%;
   font-family: Inter, sans-serif;
   color: var(--txt);
-  line-height: 1.5;
+  line-height: 1.6;
   overflow-x: hidden;
-  background: linear-gradient(120deg, #e2e8f0, #f1f5f9);
+  background: linear-gradient(120deg, #f1f5f9, #e2e8f0);
 }
 
+/* Background Gradient */
 .bg {
   position: fixed;
   inset: 0;
   background: radial-gradient(1200px 600px at 10% 10%, #c7d2fe 0%, transparent 60%),
     radial-gradient(1000px 800px at 90% 20%, #fbcfe8 0%, transparent 60%),
     radial-gradient(1200px 800px at 50% 100%, #99f6e4 0%, transparent 60%);
-  filter: saturate(1.1);
+  filter: saturate(1.15);
   z-index: -2;
 }
 
@@ -36,8 +37,8 @@ body {
 .nav,
 .footer {
   max-width: 1100px;
-  margin: 16px auto;
-  padding: 12px 20px;
+  margin: 20px auto;
+  padding: 14px 24px;
   border-radius: var(--radius);
   display: flex;
   justify-content: center;
@@ -47,36 +48,38 @@ body {
 
 .brand {
   font-weight: 800;
-  font-size: 1.3rem;
-  letter-spacing: 0.3px;
+  font-size: 1.4rem;
+  letter-spacing: 0.4px;
 }
 
 .brand span {
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .footer {
-  margin: 32px auto;
+  margin: 40px auto;
+  font-size: 0.9rem;
+  opacity: 0.75;
 }
 
-/* Containers */
+/* Container */
 .container {
   max-width: 1100px;
   margin: 32px auto;
-  padding: 0 16px;
+  padding: 0 20px;
 }
 
 .glass {
   background: var(--glass-bg);
   border: 1px solid var(--glass-brd);
-  backdrop-filter: blur(14px) saturate(1.4);
-  box-shadow: 0 8px 28px rgba(2, 8, 23, 0.08);
-  border-radius: calc(var(--radius) + 4px);
+  backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow: 0 12px 32px rgba(2, 8, 23, 0.1);
+  border-radius: calc(var(--radius) + 6px);
   transition: all 0.3s ease;
 }
 
 .card {
-  padding: 24px;
+  padding: 32px; /* bigger than text for breathing space */
   border-radius: inherit;
 }
 
@@ -93,21 +96,21 @@ body {
 }
 
 .table thead th {
-  padding: 14px;
+  padding: 16px;
   background: rgba(255, 255, 255, 0.65);
   border-bottom: 1px solid var(--glass-brd);
   text-align: left;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1rem;
   position: sticky;
   top: 0;
   backdrop-filter: blur(12px);
 }
 
 .table tbody td {
-  padding: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  font-size: 0.9rem;
+  padding: 14px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 0.95rem;
 }
 
 /* Align "Present/Absent" right on desktop */
@@ -115,17 +118,19 @@ body {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr auto;
   align-items: center;
+  padding: 8px 0;
 }
 
 .table tbody td:last-child {
   justify-self: end;
 }
 
+/* Mobile Responsive Table */
 @media (max-width: 768px) {
   .table tbody tr {
     grid-template-columns: 1fr;
     gap: 8px;
-    padding: 12px 0;
+    padding: 14px 0;
   }
 
   .table tbody td {
@@ -140,9 +145,9 @@ body {
 
 /* Buttons */
 .btn {
-  padding: 10px 16px;
+  padding: 12px 18px;
   border: 1px solid var(--glass-brd);
-  border-radius: 12px;
+  border-radius: 14px;
   font-weight: 600;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.75);
@@ -150,27 +155,27 @@ body {
 }
 
 .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(2, 8, 23, 0.12);
-  background: rgba(255, 255, 255, 0.85);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(2, 8, 23, 0.15);
+  background: rgba(255, 255, 255, 0.9);
 }
 
 /* Export Section */
 .export-section {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 28px;
+  gap: 18px;
+  margin-top: 32px;
 }
 
 .export-section form {
   display: flex;
   gap: 12px;
   align-items: flex-end;
-  padding: 14px;
+  padding: 16px;
   border-radius: var(--radius);
   border: 1px solid var(--glass-brd);
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .export-section label {
@@ -182,9 +187,9 @@ body {
 }
 
 .export-section input[type="date"] {
-  margin-top: 4px;
-  padding: 8px 10px;
-  border-radius: 10px;
+  margin-top: 6px;
+  padding: 10px 12px;
+  border-radius: 12px;
   border: 1px solid var(--glass-brd);
   background: rgba(255, 255, 255, 0.55);
 }
