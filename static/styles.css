@@ -3,21 +3,23 @@
   --glass-brd: rgba(255, 255, 255, 0.35);
   --txt: #0f172a;
   --muted: #334155;
-  --radius: 18px;
+  --radius: 16px;
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html,
 body {
   height: 100%;
-  margin: 0;
   font-family: Inter, sans-serif;
   color: var(--txt);
   line-height: 1.5;
   overflow-x: hidden;
+  background: linear-gradient(120deg, #e2e8f0, #f1f5f9);
 }
 
 .bg {
@@ -25,34 +27,39 @@ body {
   inset: 0;
   background: radial-gradient(1200px 600px at 10% 10%, #c7d2fe 0%, transparent 60%),
     radial-gradient(1000px 800px at 90% 20%, #fbcfe8 0%, transparent 60%),
-    radial-gradient(1200px 800px at 50% 100%, #99f6e4 0%, transparent 60%),
-    linear-gradient(120deg, #e2e8f0, #f1f5f9);
+    radial-gradient(1200px 800px at 50% 100%, #99f6e4 0%, transparent 60%);
   filter: saturate(1.1);
   z-index: -2;
 }
 
+/* Nav + Footer */
 .nav,
 .footer {
   max-width: 1100px;
-  margin: 16px auto 0;
-  padding: 12px 16px;
+  margin: 16px auto;
+  padding: 12px 20px;
   border-radius: var(--radius);
   display: flex;
-  justify-content: center; /* Centered the brand */
+  justify-content: center;
   align-items: center;
   text-align: center;
 }
 
 .brand {
   font-weight: 800;
-  letter-spacing: 0.2px;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.3px;
 }
 
 .brand span {
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
+.footer {
+  margin: 32px auto;
+}
+
+/* Containers */
 .container {
   max-width: 1100px;
   margin: 32px auto;
@@ -63,61 +70,96 @@ body {
   background: var(--glass-bg);
   border: 1px solid var(--glass-brd);
   backdrop-filter: blur(14px) saturate(1.4);
-  box-shadow: 0 10px 30px rgba(2, 8, 23, 0.08);
-  border-radius: calc(var(--radius) + 6px);
+  box-shadow: 0 8px 28px rgba(2, 8, 23, 0.08);
+  border-radius: calc(var(--radius) + 4px);
+  transition: all 0.3s ease;
 }
 
 .card {
   padding: 24px;
+  border-radius: inherit;
 }
 
+/* Tables */
 .table-wrap {
-  overflow: auto;
+  overflow-x: auto;
 }
 
 .table {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  border-radius: 16px;
+  border-collapse: collapse;
+  border-radius: var(--radius);
   overflow: hidden;
 }
 
 .table thead th {
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.55);
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.65);
   border-bottom: 1px solid var(--glass-brd);
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95rem;
   position: sticky;
   top: 0;
+  backdrop-filter: blur(12px);
 }
 
 .table tbody td {
   padding: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 0.9rem;
 }
 
+/* Align "Present/Absent" right on desktop */
+.table tbody tr {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  align-items: center;
+}
+
+.table tbody td:last-child {
+  justify-self: end;
+}
+
+@media (max-width: 768px) {
+  .table tbody tr {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 12px 0;
+  }
+
+  .table tbody td {
+    border: none;
+    padding: 6px 0;
+  }
+
+  .table tbody td:last-child {
+    justify-self: start;
+  }
+}
+
+/* Buttons */
 .btn {
-  padding: 12px 16px;
-  border: none;
-  border-radius: 14px;
-  font-weight: 700;
+  padding: 10px 16px;
+  border: 1px solid var(--glass-brd);
+  border-radius: 12px;
+  font-weight: 600;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.75);
-  border: 1px solid var(--glass-brd);
-  transition: transform 0.15s ease, box-shadow 0.2s ease,
-    background 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(2, 8, 23, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(2, 8, 23, 0.12);
   background: rgba(255, 255, 255, 0.85);
 }
 
+/* Export Section */
 .export-section {
   display: flex;
-  gap: 20px;
   flex-wrap: wrap;
+  gap: 16px;
   margin-top: 28px;
 }
 
@@ -142,12 +184,7 @@ body {
 .export-section input[type="date"] {
   margin-top: 4px;
   padding: 8px 10px;
-  border-radius: 12px;
+  border-radius: 10px;
   border: 1px solid var(--glass-brd);
   background: rgba(255, 255, 255, 0.55);
-}
-
-.footer {
-  margin: 24px auto 32px;
-  justify-content: center;
 }
