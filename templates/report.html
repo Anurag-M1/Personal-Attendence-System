@@ -1,42 +1,49 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h3>Overall Attendance Percentage</h3>
-<div class="table-wrap">
-  <table class="table glass">
-    <thead>
-      <tr>
-        <th>Student</th>
-        <th>Total Classes</th>
-        <th>Present</th>
-        <th>Percentage</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for s in percentages %}
-      <tr>
-        <td>{{ s[0] }}</td>
-        <td>{{ s[1] }}</td>
-        <td>{{ s[2] }}</td>
-        <td>{{ s[3] }}%</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
+  <h2 class="title">📊 Attendance Report</h2>
 
-<h3>Export Attendance</h3>
-<div class="export-section">
-  <form method="get" action="/export/excel">
-    <label>From: <input type="date" name="start"></label>
-    <label>To: <input type="date" name="end"></label>
-    <button type="submit" class="btn">Export to Excel</button>
-  </form>
+  <!-- Attendance Table -->
+  <div class="table-wrap">
+    <table class="table glass">
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Total Classes</th>
+          <th>Present</th>
+          <th>Percentage</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in percentages %}
+        <tr>
+          <td data-label="Student">{{ s[0] }}</td>
+          <td data-label="Total Classes">{{ s[1] }}</td>
+          <td data-label="Present">{{ s[2] }}</td>
+          <td data-label="Percentage">
+            <span class="chip {% if s[3] >= 75 %}ok{% else %}bad{% endif %}">
+              {{ s[3] }}%
+            </span>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
-  <form method="get" action="/export/pdf">
-    <label>From: <input type="date" name="start"></label>
-    <label>To: <input type="date" name="end"></label>
-    <button type="submit" class="btn">Export to PDF</button>
-  </form>
-</div>
+  <!-- Export Section -->
+  <h3 class="title">📤 Export Attendance</h3>
+  <div class="export-section">
+    <form method="get" action="/export/excel">
+      <label>From: <input type="date" name="start"></label>
+      <label>To: <input type="date" name="end"></label>
+      <button type="submit" class="btn">📑 Excel</button>
+    </form>
+
+    <form method="get" action="/export/pdf">
+      <label>From: <input type="date" name="start"></label>
+      <label>To: <input type="date" name="end"></label>
+      <button type="submit" class="btn">📄 PDF</button>
+    </form>
+  </div>
 {% endblock %}
