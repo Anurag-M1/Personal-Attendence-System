@@ -15,7 +15,7 @@
 html,
 body {
   height: 100%;
-  min-height: 100vh; /* ensures full screen coverage */
+  min-height: 100vh;
   font-family: Inter, sans-serif;
   color: var(--txt);
   line-height: 1.6;
@@ -38,7 +38,7 @@ body {
   z-index: -2;
 }
 
-/* Layout wrapper to push footer down */
+/* Layout wrapper */
 .page-wrap {
   flex: 1;
   display: flex;
@@ -89,7 +89,8 @@ body {
 .glass {
   background: var(--glass-bg);
   border: 1px solid var(--glass-brd);
-  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(8px) saturate(1.4);
+  backdrop-filter: blur(8px) saturate(1.4);
   box-shadow: 0 12px 32px rgba(2, 8, 23, 0.1);
   border-radius: calc(var(--radius) + 6px);
   transition: all 0.3s ease;
@@ -118,7 +119,8 @@ body {
   background: var(--glass-bg);
   border: 1px solid var(--glass-brd);
   border-radius: 22px;
-  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(8px) saturate(1.4);
+  backdrop-filter: blur(8px) saturate(1.4);
   box-shadow: 0 12px 28px rgba(2, 8, 23, 0.12);
   transition: all 0.3s ease;
 }
@@ -141,8 +143,22 @@ body {
   box-shadow: 0 4px 10px rgba(2, 8, 23, 0.1);
 }
 
+/* Responsive fix: horizontal layout on desktop */
+@media (min-width: 768px) {
+  .vertical-options {
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 900px;
+    justify-content: center;
+  }
+
+  .vertical-options .action {
+    flex: 1 1 280px;
+  }
+}
+
 /* ============================= */
-/* SAME EFFECT FOR FORMS + PAGES */
+/* CARDS FOR FORMS + PAGES */
 /* ============================= */
 .form-card,
 .report-card,
@@ -155,7 +171,8 @@ body {
   border-radius: 22px;
   background: var(--glass-bg);
   border: 1px solid var(--glass-brd);
-  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(8px) saturate(1.4);
+  backdrop-filter: blur(8px) saturate(1.4);
   box-shadow: 0 12px 28px rgba(2, 8, 23, 0.12);
   transition: all 0.3s ease;
 }
