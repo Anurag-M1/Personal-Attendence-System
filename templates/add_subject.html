@@ -1,20 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2 class="title">Add Subject</h2>
+  <div class="student-card">
+    <h2 class="title">📚 Add Subject</h2>
+    <p class="muted">Enter subject details below</p>
 
-  <form method="post" class="form glass">
-    <div class="row">
-      <div class="col">
-        <label class="label">Subject Name</label>
-        <input 
-          class="input" 
-          type="text" 
-          name="name" 
-          placeholder="e.g., Machine Learning" 
-          required>
+    <form method="post" class="form">
+      <div class="row">
+        <div class="col">
+          <label class="label">Subject Name</label>
+          <input 
+            class="input" 
+            type="text" 
+            name="name" 
+            placeholder="e.g., Machine Learning" 
+            required>
+        </div>
       </div>
-    </div>
-    <button class="btn" type="submit">➕ Add Subject</button>
-  </form>
+
+      <div class="row">
+        <div class="col">
+          <label class="label">Subject Code</label>
+          <input 
+            class="input" 
+            type="text" 
+            name="code" 
+            placeholder="e.g., ML101" 
+            required>
+        </div>
+      </div>
+
+      <button class="btn" type="submit">✅ Save Subject</button>
+    </form>
+  </div>
 {% endblock %}
