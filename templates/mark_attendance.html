@@ -1,41 +1,44 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2 class="title">Mark Attendance</h2>
+  <div class="student-card">
+    <h2 class="title">🗓️ Mark Attendance</h2>
+    <p class="muted">Select a subject, choose the date, and mark each student</p>
 
-  <form method="post" class="form glass">
-    <!-- Subject & Date Row -->
-    <div class="row">
-      <div class="col">
-        <label class="label">Subject</label>
-        <select class="input" name="subject" required>
-          {% for sub in subjects %}
-            <option value="{{ sub[0] }}">{{ sub[1] }}</option>
-          {% endfor %}
-        </select>
-      </div>
-      <div class="col">
-        <label class="label">Date</label>
-        <input class="input" type="date" name="date" value="{{ today }}">
-      </div>
-    </div>
-
-    <!-- Student List -->
-    <div class="list">
-      {% for student in students %}
-        <div class="list-item glass">
-          <div class="list-name">{{ student[1] }}</div>
-          <div class="list-actions">
-            <select class="input slim" name="student_{{ student[0] }}">
-              <option value="Present">Present</option>
-              <option value="Absent">Absent</option>
-            </select>
-          </div>
+    <form method="post" class="form">
+      <!-- Subject & Date Row -->
+      <div class="row">
+        <div class="col">
+          <label class="label">Subject</label>
+          <select class="input" name="subject" required>
+            {% for sub in subjects %}
+              <option value="{{ sub[0] }}">{{ sub[1] }}</option>
+            {% endfor %}
+          </select>
         </div>
-      {% endfor %}
-    </div>
+        <div class="col">
+          <label class="label">Date</label>
+          <input class="input" type="date" name="date" value="{{ today }}">
+        </div>
+      </div>
 
-    <!-- Submit Button -->
-    <button class="btn" type="submit">💾 Save Attendance</button>
-  </form>
+      <!-- Student List -->
+      <div class="list">
+        {% for student in students %}
+          <div class="list-item glass">
+            <div class="list-name">{{ student[1] }}</div>
+            <div class="list-actions">
+              <select class="input slim" name="student_{{ student[0] }}">
+                <option value="Present">✅ Present</option>
+                <option value="Absent">❌ Absent</option>
+              </select>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <!-- Submit Button -->
+      <button class="btn" type="submit">💾 Save Attendance</button>
+    </form>
+  </div>
 {% endblock %}
