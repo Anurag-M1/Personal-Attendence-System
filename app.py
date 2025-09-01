@@ -47,8 +47,8 @@ def init_db():
 # -----------------------------
 @app.context_processor
 def inject_now():
-    """Make `now` available in templates as a function."""
-    return {'now': lambda: datetime.utcnow()}
+    """Make current datetime available in templates."""
+    return {'now': datetime.utcnow()}
 
 # -----------------------------
 # Routes
@@ -100,7 +100,6 @@ def mark_attendance():
             status = request.form.get(f"student_{student[0]}", "Absent")
             with get_db() as conn:
                 with conn.cursor() as c:
-                    # Prevent duplicate attendance
                     c.execute("""
                         SELECT id FROM attendance
                         WHERE student_id=%s AND subject_id=%s AND date=%s
@@ -124,11 +123,9 @@ def report():
 
     with get_db() as conn:
         with conn.cursor() as c:
-            # Fetch subjects
             c.execute("SELECT * FROM subjects ORDER BY name ASC")
             subjects = c.fetchall()
 
-            # Build attendance query
             query = """
                 SELECT students.id, students.name, subjects.name, attendance.date, attendance.status
                 FROM attendance
@@ -147,7 +144,6 @@ def report():
             c.execute(query, tuple(params))
             records = c.fetchall()
 
-            # Calculate percentage per student
             c.execute("""
                 SELECT students.id, students.name,
                     COUNT(attendance.id) AS total,
@@ -202,7 +198,6 @@ def export_excel():
             c.execute(query, tuple(params))
             rows = c.fetchall()
 
-    # Build Excel
     wb = openpyxl.Workbook()
     ws = wb.active
     ws.append(["Student", "Subject", "Date", "Status"])
@@ -239,7 +234,6 @@ def export_pdf():
             c.execute(query, tuple(params))
             rows = c.fetchall()
 
-    # Build PDF
     buffer = io.BytesIO()
     p = canvas.Canvas(buffer, pagesize=letter)
     y = 750
