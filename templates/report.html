@@ -1,49 +1,58 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2 class="title">📊 Attendance Report</h2>
+  <div class="student-card">
+    <h2 class="title">📊 Attendance Report</h2>
+    <p class="muted">Overview of student performance and attendance percentage</p>
 
-  <!-- Attendance Table -->
-  <div class="table-wrap">
-    <table class="table glass">
-      <thead>
-        <tr>
-          <th>Student</th>
-          <th>Total Classes</th>
-          <th>Present</th>
-          <th>Percentage</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for s in percentages %}
-        <tr>
-          <td data-label="Student">{{ s[0] }}</td>
-          <td data-label="Total Classes">{{ s[1] }}</td>
-          <td data-label="Present">{{ s[2] }}</td>
-          <td data-label="Percentage">
-            <span class="chip {% if s[3] >= 75 %}ok{% else %}bad{% endif %}">
-              {{ s[3] }}%
-            </span>
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
+    <!-- Attendance Table -->
+    <div class="table-wrap glass">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>👤 Student</th>
+            <th>📚 Total</th>
+            <th>✅ Present</th>
+            <th>📈 %</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in percentages %}
+          <tr>
+            <td data-label="Student">{{ s[0] }}</td>
+            <td data-label="Total Classes">{{ s[1] }}</td>
+            <td data-label="Present">{{ s[2] }}</td>
+            <td data-label="Percentage">
+              <span class="chip {% if s[3] >= 75 %}ok{% else %}bad{% endif %}">
+                {{ s[3] }}%
+              </span>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
 
-  <!-- Export Section -->
-  <h3 class="title">📤 Export Attendance</h3>
-  <div class="export-section">
-    <form method="get" action="/export/excel">
-      <label>From: <input type="date" name="start"></label>
-      <label>To: <input type="date" name="end"></label>
-      <button type="submit" class="btn">📑 Excel</button>
-    </form>
+    <!-- Export Section -->
+    <h3 class="title">📤 Export Attendance</h3>
+    <p class="muted">Download reports for selected date ranges</p>
 
-    <form method="get" action="/export/pdf">
-      <label>From: <input type="date" name="start"></label>
-      <label>To: <input type="date" name="end"></label>
-      <button type="submit" class="btn">📄 PDF</button>
-    </form>
+    <div class="export-section grid">
+      <form method="get" action="/export/excel" class="glass form small">
+        <div class="row">
+          <label>From: <input type="date" name="start"></label>
+          <label>To: <input type="date" name="end"></label>
+        </div>
+        <button type="submit" class="btn">📑 Excel</button>
+      </form>
+
+      <form method="get" action="/export/pdf" class="glass form small">
+        <div class="row">
+          <label>From: <input type="date" name="start"></label>
+          <label>To: <input type="date" name="end"></label>
+        </div>
+        <button type="submit" class="btn">📄 PDF</button>
+      </form>
+    </div>
   </div>
 {% endblock %}
