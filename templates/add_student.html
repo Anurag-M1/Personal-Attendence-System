@@ -1,20 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2 class="title">Add Student</h2>
+  <div class="student-card">
+    <h2 class="title">➕ Add Student</h2>
+    <p class="muted">Enter student details below</p>
 
-  <form method="post" class="form glass">
-    <div class="row">
-      <div class="col">
-        <label class="label">Student Name</label>
-        <input 
-          class="input" 
-          type="text" 
-          name="name" 
-          placeholder="e.g., Anurag Singh" 
-          required>
+    <form method="post" class="form">
+      <div class="row">
+        <div class="col">
+          <label class="label">Student Name</label>
+          <input 
+            class="input" 
+            type="text" 
+            name="name" 
+            placeholder="e.g., Anurag Singh" 
+            required>
+        </div>
       </div>
-    </div>
-    <button class="btn" type="submit">➕ Add Student</button>
-  </form>
+
+      <div class="row">
+        <div class="col">
+          <label class="label">Roll Number</label>
+          <input 
+            class="input" 
+            type="text" 
+            name="roll" 
+            placeholder="e.g., 101" 
+            required>
+        </div>
+      </div>
+
+      <button class="btn" type="submit">✅ Save Student</button>
+    </form>
+  </div>
 {% endblock %}
