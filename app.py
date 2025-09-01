@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, send_file
+from flask import Flask, render_template, request, redirect, url_for, send_file, flash
 import psycopg2
 import os
 from datetime import date, datetime
@@ -8,6 +8,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
 app = Flask(__name__)
+app.secret_key = "supersecretkey"  # Needed for flash messages
 
 # -----------------------------
 # Database Connection
@@ -56,6 +57,7 @@ def add_student():
             conn.commit()
             c.close()
             conn.close()
+            flash(f"✅ Student '{name}' added successfully!", "success")
         return redirect(url_for("index"))
     return render_template("add_student.html")
 
@@ -70,6 +72,7 @@ def add_subject():
             conn.commit()
             c.close()
             conn.close()
+            flash(f"✅ Subject '{name}' added successfully!", "success")
         return redirect(url_for("index"))
     return render_template("add_subject.html")
 
@@ -87,15 +90,25 @@ def mark_attendance():
     if request.method == "POST":
         subject_id = request.form["subject"]
         the_date = request.form.get("date") or str(date.today())
+
         for student in students:
             status = request.form.get(f"student_{student[0]}", "Absent")
             conn = get_db()
             c = conn.cursor()
-            c.execute("INSERT INTO attendance (student_id, subject_id, date, status) VALUES (%s, %s, %s, %s)",
-                      (student[0], subject_id, the_date, status))
-            conn.commit()
+
+            # Prevent duplicate attendance
+            c.execute("""
+                SELECT id FROM attendance
+                WHERE student_id=%s AND subject_id=%s AND date=%s
+            """, (student[0], subject_id, the_date))
+            if not c.fetchone():
+                c.execute("INSERT INTO attendance (student_id, subject_id, date, status) VALUES (%s, %s, %s, %s)",
+                          (student[0], subject_id, the_date, status))
+                conn.commit()
             c.close()
             conn.close()
+
+        flash("✅ Attendance marked successfully!", "success")
         return redirect(url_for("report"))
 
     return render_template("mark_attendance.html", students=students, subjects=subjects, today=str(date.today()))
@@ -129,7 +142,6 @@ def report():
         params.append(selected_date)
 
     query += " ORDER BY attendance.date DESC, students.name ASC"
-
     c.execute(query, tuple(params))
     records = c.fetchall()
 
