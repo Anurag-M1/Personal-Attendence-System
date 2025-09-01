@@ -1,10 +1,20 @@
-
 {% extends "base.html" %}
+
 {% block content %}
   <h2 class="title">Add Student</h2>
-  <form method="post" class="form">
-    <label class="label">Student Name</label>
-    <input class="input" type="text" name="name" placeholder="e.g., Anurag Singh" required>
-    <button class="btn" type="submit">Add Student</button>
+
+  <form method="post" class="form glass">
+    <div class="row">
+      <div class="col">
+        <label class="label">Student Name</label>
+        <input 
+          class="input" 
+          type="text" 
+          name="name" 
+          placeholder="e.g., Anurag Singh" 
+          required>
+      </div>
+    </div>
+    <button class="btn" type="submit">➕ Add Student</button>
   </form>
 {% endblock %}
